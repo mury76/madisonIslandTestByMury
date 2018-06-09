@@ -8,22 +8,25 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class SearchTest {
+public class RegisterTest {
 
     @Test
     public void registerTest(){
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\mury7\\FastTrackIt\\nadisonIslandTest\\src\\test\\resources\\drivers\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://fasttrackit.org/selenium-test/");
+        System.setProperty("webdriver.chrome.driver","C:\\Users\\mury7\\IdeaProjects\\madisonIslandTestByMry\\src\\test\\resources\\drivers\\chromedriver.exe");
 
+        // Creating unique e-mail.
         String email = "mail" + System.currentTimeMillis() + "@mail.com";
 
+        // Verifying successful register with valid data.
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://fasttrackit.org/selenium-test/");
         registerUser(driver, email);
         driver.findElement(By.className("success-msg"));
         WebElement successMsgContainer = driver.findElement(By.className("success-msg"));
         assertThat("Success message not displayed", successMsgContainer.isDisplayed());
         driver.quit();
 
+        // Verifying error message if user enter an existing e-mail when register.
         driver = new ChromeDriver();
         driver.get("https://fasttrackit.org/selenium-test/");
         registerUser(driver, email);
@@ -31,9 +34,9 @@ public class SearchTest {
         WebElement errorMsgContainer = driver.findElement(By.className("error-msg"));
         assertThat("Error message not displayed", errorMsgContainer.isDisplayed());
         driver.quit();
-
     }
 
+    // Completing register form.
     private void registerUser(WebDriver driver, String email) {
         driver.findElement(By.linkText("ACCOUNT")).click();
         driver.findElement(By.linkText("Register")).click();
@@ -45,6 +48,5 @@ public class SearchTest {
         driver.findElement(By.id("confirmation")).sendKeys("123456");
         driver.findElement(By.name("is_subscribed")).click();
         driver.findElement(By.cssSelector("button[title='Register']")).click();
-
     }
 }
