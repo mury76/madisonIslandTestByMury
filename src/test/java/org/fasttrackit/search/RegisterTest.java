@@ -11,7 +11,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class RegisterTest {
 
     @Test
-    public void registerTest(){
+    public void registerTest() throws InterruptedException {
         System.setProperty("webdriver.chrome.driver","C:\\Users\\mury7\\IdeaProjects\\madisonIslandTestByMry\\src\\test\\resources\\drivers\\chromedriver.exe");
 
         // Creating unique e-mail.
@@ -24,6 +24,7 @@ public class RegisterTest {
         driver.findElement(By.className("success-msg"));
         WebElement successMsgContainer = driver.findElement(By.className("success-msg"));
         assertThat("Success message not displayed", successMsgContainer.isDisplayed());
+        Thread.sleep(1000);
         driver.quit();
 
         // Verifying error message if user enter an existing e-mail when register.
@@ -33,6 +34,7 @@ public class RegisterTest {
         driver.findElement(By.className("error-msg"));
         WebElement errorMsgContainer = driver.findElement(By.className("error-msg"));
         assertThat("Error message not displayed", errorMsgContainer.isDisplayed());
+        Thread.sleep(1000);
         driver.quit();
     }
 
