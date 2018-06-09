@@ -11,7 +11,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class LoginTest {
 
     @Test
-    public void loginTest(){
+    public void loginTestWithValidData(){
         System.setProperty("webdriver.chrome.driver","C:\\Users\\mury7\\IdeaProjects\\madisonIslandTestByMry\\src\\test\\resources\\drivers\\chromedriver.exe");
 
         WebDriver driver = new ChromeDriver(); {
@@ -24,7 +24,7 @@ public class LoginTest {
             driver.findElement(By.cssSelector("button[title='Login']")).click();
             driver.findElement(By.className("welcome-msg"));
             WebElement errorMsgContainer = driver.findElement(By.className("welcome-msg"));
-            assertThat("The user is not logged in", errorMsgContainer.isDisplayed());
+            assertThat("The user failed to log in", errorMsgContainer.isDisplayed());
             driver.quit();
         }
 
