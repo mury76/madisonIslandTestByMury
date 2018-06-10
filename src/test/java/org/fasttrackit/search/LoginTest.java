@@ -34,7 +34,7 @@ public class LoginTest {
     }
 
     @Test
-    public void loginTestWithWrongEmail(){
+    public void loginTestWithUnregisteredEmail(){
         System.setProperty("webdriver.chrome.driver","C:\\Users\\mury7\\IdeaProjects\\madisonIslandTestByMry\\src\\test\\resources\\drivers\\chromedriver.exe");
 
         // Making sure it is an unused email.
