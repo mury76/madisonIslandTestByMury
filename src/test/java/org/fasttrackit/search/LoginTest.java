@@ -34,6 +34,30 @@ public class LoginTest {
     }
 
     @Test
+    public void loginTestWithWrongEmail(){
+        System.setProperty("webdriver.chrome.driver","C:\\Users\\mury7\\IdeaProjects\\madisonIslandTestByMry\\src\\test\\resources\\drivers\\chromedriver.exe");
+
+        // Making sure it is an unused email.
+        String email = "mail" + System.currentTimeMillis() + "@mail.com";
+
+        WebDriver driver = new ChromeDriver(); {
+            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+            driver.get("https://fasttrackit.org/selenium-test/");
+            driver.findElement(By.linkText("ACCOUNT")).click();
+            driver.findElement(By.linkText("Log In")).click();
+            driver.findElement(By.name("login[username]")).sendKeys(email);
+            driver.findElement(By.name("login[password]")).sendKeys("123456");
+            driver.findElement(By.cssSelector("button[title='Login']")).click();
+            driver.findElement(By.className("error-msg"));
+            WebElement errorMsgContainer = driver.findElement(By.className("error-msg"));
+            assertThat("Error message not displayed", errorMsgContainer.isDisplayed());
+            driver.quit();
+        }
+
+    }
+
+    @Test
     public void loginTestWithWrongPassword(){
         System.setProperty("webdriver.chrome.driver","C:\\Users\\mury7\\IdeaProjects\\madisonIslandTestByMry\\src\\test\\resources\\drivers\\chromedriver.exe");
 
