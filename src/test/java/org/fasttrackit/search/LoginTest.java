@@ -97,7 +97,6 @@ public class LoginTest {
             driver.findElement(By.linkText("Log In")).click();
             driver.findElement(By.name("login[password]")).sendKeys("123456");
             driver.findElement(By.cssSelector("button[title='Login']")).click();
-            driver.findElement(By.id("advice-required-entry-email"));
             WebElement errorMsgContainer = driver.findElement(By.className("validation-advice"));
             assertThat("Error message not displayed", errorMsgContainer.isDisplayed());
             driver.quit();
